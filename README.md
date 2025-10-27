@@ -1,2 +1,0 @@
-# Invenza
-Reset password
