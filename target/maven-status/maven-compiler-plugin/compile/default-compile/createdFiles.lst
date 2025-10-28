@@ -1,0 +1,4 @@
+com\invenza\wms\repository\InventoryRepository.class
+com\invenza\wms\model\InventoryItem.class
+com\invenza\wms\WmsApplication.class
+com\invenza\wms\controller\InventoryController.class
