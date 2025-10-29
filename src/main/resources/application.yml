@@ -8,7 +8,8 @@ spring:
       ddl-auto: update
     show-sql: true
 server:
-  port: 8080
+  port: 5000
   error:
     include-message: always
+
 
