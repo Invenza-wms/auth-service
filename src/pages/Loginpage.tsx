@@ -18,7 +18,7 @@ interface LoginAPIData {
   rememberMe?: boolean;
 }
 
-// ✅ Connect frontend login to backend
+//  Connect frontend login to backend
 const login = async (data: LoginAPIData) => {
   const response = await fetch('http://localhost:9096/api/auth/login', {
     method: 'POST',
@@ -90,7 +90,7 @@ const LoginPage: React.FC = () => {
     }
 
     try {
-      // ✅ connect to backend validation
+      //  connect to backend validation
       const result = await login(formData);
       console.log(result);
       alert('Login Successful!');
