@@ -111,7 +111,7 @@ const Dashboard: React.FC = () => {
           <a
             href="/"
             style={{
-              backgroundColor: "#B01045", // red background as per your palette
+              backgroundColor: COLORS.ACCENT_BUTTON, // red background as per your palette
               color: "white",
               padding: "8px 16px",
               borderRadius: "6px",
