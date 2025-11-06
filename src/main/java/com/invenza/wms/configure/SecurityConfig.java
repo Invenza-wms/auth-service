@@ -1,4 +1,4 @@
-package com.invenza.wms.config;
+package com.invenza.wms.configure;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,16 +13,23 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+            .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers(
+                    "/api/auth/**",   // allow login/register APIs
+                    "/api/users/**"   // allow user creation etc.
+                ).permitAll()
                 .anyRequest().authenticated()
             )
-            .formLogin(withDefaults -> {})
-            .csrf(csrf -> csrf.disable()); // optional: disable for testing
+            .formLogin(form -> form.disable())   // disable Spring's login page
+            .httpBasic(httpBasic -> httpBasic.disable()); // disable basic auth pop-up
+
         return http.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance(); // allows plain text passwords
+        return NoOpPasswordEncoder.getInstance(); // plain text passwords (ok for dev)
     }
 }
+

@@ -23,11 +23,11 @@ public class AuthController {
         String username = request.getUsername();
         String password = request.getPassword();
 
-        boolean isValid = authService.login(request.getUsername(), request.getPassword());
-         if (isValid){
-            return ResponseEntity.ok("✅ Login successful for user: " + username);
+       boolean isValid = authService.login(request.getUsername(), request.getPassword());
+        if (isValid){
+            return ResponseEntity.ok(" Login successful for user: " + username);
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("❌ Invalid credentials");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(" Invalid credentials");
         }
     }
 }
