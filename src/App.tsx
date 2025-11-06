@@ -71,9 +71,9 @@ const [otpFields, setOtpFields] = useState(["", "", "", "", "", ""])
   }
 
   return (
-    <div style={{background: '#dee4f1', minHeight: '100vh',backdropFilter:'blur(70px)',fontFamily: 'Bebas Neue, sans-serif'}}>
+    <div style={{backgroundColor:'white', minHeight: '100vh',backdropFilter:'blur(70px)',fontFamily: 'Bebas Neue, sans-serif'}}>
       
-      <header style={{display:'flex', alignItems:'center', padding: '12px 24px', borderBottom: '1px solid #eee'}}>
+      <header style={{display:'flex', alignItems:'center', padding: '12px 24px', borderBottom: '1px solid #eee',background:'#6A7D9B', color:'#fff'}}>
         <img src={Logo} alt="Invenza" style={{height:50}} />
         <div style={{flex:1, marginLeft:40,position: "relative"}}>
           <Search
@@ -95,9 +95,7 @@ const [otpFields, setOtpFields] = useState(["", "", "", "", "", ""])
             <a href="#" style={{ textDecoration: "none", color: "#330307", fontWeight: "600"}}>
               About Us
             </a>
-            <a href="#" style={{ textDecoration: "none", color: "#330307", fontWeight: "600" }}>
-              Services
-            </a>
+            
           </div>
         <nav>
           <button style={{background:primary, color:'#fff',padding:'8px 12px', borderRadius:6, border:'none'}}>Menu</button>
@@ -106,12 +104,6 @@ const [otpFields, setOtpFields] = useState(["", "", "", "", "", ""])
 
       <div style={{display:'flex', justifyContent:'center', alignItems:'center', padding:70}}>
         <div style={{width:420,minHeight:'60vh', background:container, padding:28, borderRadius:30, color:'#fff', boxShadow:'0 6px 18px rgba(0,0,0,0.12)'}}>
-          <div style={{textAlign:'center', marginBottom:50}}>
-      <img
-        src="/src/assets/Invenza.png"
-        alt="Invenza Logo"
-        style={{width:160, objectFit:'contain',borderRadius:18}}
-      />
     </div>
           {step === 'request' && (
             <>
