@@ -8,7 +8,7 @@ const COLORS = {
   BUTTON: '#2c4166',
   BUTTON_HOVER: '#4b5f82',
   MANDATORY: '#330307',
-  TEXT: '#2c4166',
+  TEXT: '#FFFFFF',
   ACCENT_LINK: '#b01045',
 };
 
@@ -18,13 +18,13 @@ interface LoginAPIData {
   rememberMe?: boolean;
 }
 
-//  Connect frontend login to backend
+// Function to call backend API for login 
 const login = async (data: LoginAPIData) => {
   const response = await fetch('http://localhost:9096/api/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      username: data.username, // username is actually email from signup
+      username: data.username,
       password: data.password,
     }),
   });
@@ -36,31 +36,6 @@ const login = async (data: LoginAPIData) => {
   return response.text();
 };
 
-const Spinner: React.FC = () => (
-  <svg
-    className="animate-spin h-5 w-5 text-white"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-  >
-    <circle
-      className="opacity-25"
-      cx="12"
-      cy="12"
-      r="10"
-      stroke="currentColor"
-      strokeWidth="4"
-    />
-    <path
-      className="opacity-75"
-      fill="currentColor"
-      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 
-      5.291A7.962 7.962 0 014 12H0c0 
-      3.042 1.135 5.824 3 7.938l3-2.647z"
-    />
-  </svg>
-);
-
 const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState<LoginAPIData>({
@@ -69,11 +44,13 @@ const LoginPage: React.FC = () => {
     rememberMe: false,
   });
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     setError(null);
+    setSuccess(false);
   };
 
   const handleSignUp = () => navigate('/signup');
@@ -82,6 +59,7 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setSuccess(false);
 
     if (!formData.username || !formData.password) {
       setError('Please enter both username and password.');
@@ -90,11 +68,10 @@ const LoginPage: React.FC = () => {
     }
 
     try {
-      //  connect to backend validation
       const result = await login(formData);
       console.log(result);
-      alert('Login Successful!');
-      navigate('/dashboard');
+      setSuccess(true);
+      setTimeout(() => navigate('/dashboard'), 1500);
     } catch (err: unknown) {
       let errorMessage = 'Login failed.';
       if (typeof err === 'object' && err !== null && 'message' in err) {
@@ -114,7 +91,7 @@ const LoginPage: React.FC = () => {
     border: `1px solid ${COLORS.MANDATORY}`,
     backgroundColor: 'rgba(255,255,255,0.9)',
     color: COLORS.MANDATORY,
-    fontSize: '14px',
+    fontSize: '16px',
     boxSizing: 'border-box',
   };
 
@@ -164,19 +141,18 @@ const LoginPage: React.FC = () => {
           <img
             src="Invenza.png"
             alt="Logo"
-            style={{ width: '90px', height: '100px', objectFit: 'contain' }}
+            style={{ width: '130px', height: '130px', objectFit: 'contain' }}
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.onerror = null;
-              target.src =
-                'https://placehold.co/40x40/FFFFFF/610c1e?text=Logo';
+              target.src = 'https://placehold.co/40x40/FFFFFF/610c1e?text=Logo';
             }}
           />
         </div>
 
         <h1
           className="font-bold mb-4 mt-16"
-          style={{ color: COLORS.LOGO_TEXT, fontSize: '24px' }}
+          style={{ color: COLORS.MANDATORY, fontSize: '24px' }}
         >
           Login
         </h1>
@@ -187,9 +163,9 @@ const LoginPage: React.FC = () => {
               <label
                 htmlFor={field}
                 style={{
-                  color: COLORS.MANDATORY,
+                  color: COLORS.TEXT,
                   marginBottom: '6px',
-                  fontSize: '14px',
+                  fontSize: '16px',
                   fontWeight: 500,
                 }}
               >
@@ -214,7 +190,7 @@ const LoginPage: React.FC = () => {
           <div className="flex justify-between items-center mb-4 w-full">
             <label
               className="flex items-center text-sm"
-              style={{ color: COLORS.MANDATORY }}
+              style={{ color: COLORS.TEXT }}
             >
               <input
                 type="checkbox"
@@ -243,15 +219,24 @@ const LoginPage: React.FC = () => {
             </div>
           )}
 
+          {success && (
+            <div className="w-full p-2 rounded-md text-green-700 bg-green-50 text-center mb-4 flex items-center justify-center gap-2">
+              ✅ Login Successful!
+            </div>
+          )}
+
           <div style={{ margin: '16px 0' }}>
             <button type="submit" style={buttonStyle} disabled={loading}>
-              {loading ? <Spinner /> : 'Login'}
+              Login
             </button>
           </div>
         </form>
 
         <div className="text-center mt-6 text-sm">
-          <span className="text-black opacity-90 mr-1">
+          <span
+            className="opacity-90 mr-3"
+            style={{ color: COLORS.TEXT, marginRight: '10px' }}
+          >
             Don't have an account?
           </span>
           <span
@@ -270,5 +255,6 @@ const LoginPage: React.FC = () => {
 export default LoginPage;
 
 
+  
 
 
