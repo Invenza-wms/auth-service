@@ -8,7 +8,7 @@ const COLORS = {
   BUTTON: '#2c4166',
   BUTTON_HOVER: '#4b5f82',
   MANDATORY: '#330307',
-  TEXT: '#2c4166',
+  TEXT: '#FFFFFF',
   ACCENT_LINK: '#b01045',
 };
 
@@ -89,12 +89,18 @@ const SignupPage: React.FC = () => {
     setLoading(true);
     setError(null);
     setSuccessMessage(null);
-
+    
     if (!formData.username || !formData.email || !formData.password || !formData.confirmPassword) {
       setError('Please fill all fields.');
       setLoading(false);
       return;
     }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailRegex.test(formData.email)) {
+  setError('Please enter a valid email address.');
+  setLoading(false);
+  return;
+}
 
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match.');
@@ -141,7 +147,7 @@ const SignupPage: React.FC = () => {
     border: `1px solid ${COLORS.MANDATORY}`,
     backgroundColor: 'rgba(255,255,255,0.9)',
     color: COLORS.MANDATORY,
-    fontSize: '14px',
+    fontSize: '16px',
     boxSizing: 'border-box',
   };
 
@@ -192,7 +198,7 @@ const SignupPage: React.FC = () => {
           <img
             src="Invenza.png"
             alt="Logo"
-            style={{ width: '90px', height: '100px', objectFit: 'contain' }}
+            style={{ width: '130px', height: '130px', objectFit: 'contain' }}
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.onerror = null;
@@ -205,11 +211,11 @@ const SignupPage: React.FC = () => {
         {/* Heading */}
         <h1
           className="font-bold mb-2 mt-16"
-          style={{ color: COLORS.LOGO_TEXT, fontSize: '24px' }}
+          style={{ color:  COLORS.MANDATORY, fontSize: '24px' }}
         >
           SignUp
         </h1>
-        <p className="mb-6" style={{ color: COLORS.LOGO_TEXT, opacity: 0.8, fontSize: '14px' }}>
+        <p className="mb-6" style={{ color:  COLORS.TEXT, opacity: 0.8, fontSize: '16px' }}>
           Create your account
         </p>
 
@@ -247,9 +253,9 @@ const SignupPage: React.FC = () => {
                 <label
                   htmlFor={field}
                   style={{
-                    color: COLORS.MANDATORY,
+                    color: COLORS.TEXT,
                     marginBottom: '6px',
-                    fontSize: '14px',
+                    fontSize: '16px',
                     fontWeight: 500,
                   }}
                 >
@@ -277,14 +283,14 @@ const SignupPage: React.FC = () => {
         </form>
 
         {/* Login Link */}
-        <div className="text-center mt-4 text-sm">
-          <span style={{ color: COLORS.LOGO_TEXT, marginRight: '4px' }}>
+        <div className="text-center mt-4" style={{ fontSize: '16px' }}>
+          <span style={{ color:  COLORS.TEXT, marginRight: '10px' }}>
             Already have an account?
           </span>
           <span
             onClick={() => navigate('/')}
             className="font-bold hover:underline cursor-pointer"
-            style={{ color: COLORS.ACCENT_LINK }}
+            style={{ color: COLORS.ACCENT_LINK ,fontSize: '16px' }}
           >
             Login
           </span>
@@ -295,7 +301,6 @@ const SignupPage: React.FC = () => {
 };
 
 export default SignupPage;
-
 
 
 
