@@ -1,0 +1,24 @@
+
+
+/* Base custom color utilities (use these like bg-invenza-navbar, text-invenza-heading, etc.) */
+.bg-invenza-navbar { background-color: var(--color-invenza-navbar) !important; }
+.text-invenza-heading { color: var(--color-invenza-heading) !important; }
+.border-invenza-primary { border-color: var(--color-invenza-primary) !important; }
+.text-invenza-primary { color: var(--color-invenza-primary) !important; }
+.text-invenza-mainAccent { color: var(--color-invenza-mainAccent) !important; }
+.bg-invenza-success { background-color: var(--color-invenza-success) !important; }
+.bg-invenza-accent { background-color: var(--color-invenza-accent) !important; }
+
+/* Hover variants — define class names that match Tailwind's hover:prefixed classes.
+   These selectors need escaping for the colon in CSS; that's why the backslash is used.
+   This allows using `hover:bg-invenza-accent` as a class in your JSX just like Tailwind.
+*/
+.hover\:bg-invenza-accent:hover { background-color: var(--color-invenza-accent) !important; }
+.hover\:text-invenza-heading:hover { color: var(--color-invenza-heading) !important; }
+
+/* Focus/active variants (optional) */
+.focus\:ring-invenza-accent:focus { box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-invenza-accent) 20%, transparent); }
+.active\:bg-invenza-accent:active { background-color: var(--color-invenza-accent) !important; }
+
+/* Small helpers for text-on-colored-bg contrast (if you want them) */
+.text-invenza-on-dark { color: #ffffff !important; } /* for white text on colored backgrounds */

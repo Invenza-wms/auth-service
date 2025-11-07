@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@import "./app.css";
+/* Tailwind v4 – Invenza theme setup */
+
+/* Define custom colors using the new @theme block */
+@theme {
+  --color-invenza-navbar: #6A7D9B;
+  --color-invenza-heading: #3F4B5D;
+  --color-invenza-primary: #3A3B3B;
+  --color-invenza-mainAccent: #C2C5C7;
+  --color-invenza-success: #576883;
+  --color-invenza-accent: #C8174C;
+}
+/* Load Tailwind utilities (includes base + components internally) */
+@tailwind utilities;
