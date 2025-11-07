@@ -1,0 +1,4 @@
+/* Basic styles for the standalone project */
+* { box-sizing: border-box; }
+body { margin:0; background: #ffffff; }
+input:focus, button:focus { outline: none; }
