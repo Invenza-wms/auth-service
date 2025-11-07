@@ -1,0 +1,10 @@
+com\invenza\wms\dto\LoginRequest.class
+com\invenza\wms\repository\InventoryRepository.class
+com\invenza\wms\model\InventoryItem.class
+com\invenza\wms\configure\SecurityConfig.class
+com\invenza\wms\service\AuthService.class
+com\invenza\wms\repository\UserRepository.class
+com\invenza\wms\WmsApplication.class
+com\invenza\wms\controller\AuthController.class
+com\invenza\wms\controller\InventoryController.class
+com\invenza\wms\model\User.class
